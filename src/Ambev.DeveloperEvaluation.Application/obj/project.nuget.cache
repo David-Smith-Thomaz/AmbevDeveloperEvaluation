@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8F375ldNatQ=",
+  "dgSpecHash": "rIZ5iJIfCAA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\david\\Desktop\\abi-gth-omnia-developer-evaluation\\template\\backend\\src\\Ambev.DeveloperEvaluation.Application\\Ambev.DeveloperEvaluation.Application.csproj",
+  "projectFilePath": "C:\\Projects\\AmbevDeveloperEvaluation\\src\\Ambev.DeveloperEvaluation.Application\\Ambev.DeveloperEvaluation.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\david\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",

@@ -10,3 +10,16 @@ C:\Users\david\Desktop\abi-gth-omnia-developer-evaluation\template\backend\src\A
 C:\Users\david\Desktop\abi-gth-omnia-developer-evaluation\template\backend\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\refint\Ambev.DeveloperEvaluation.Common.dll
 C:\Users\david\Desktop\abi-gth-omnia-developer-evaluation\template\backend\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.pdb
 C:\Users\david\Desktop\abi-gth-omnia-developer-evaluation\template\backend\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\ref\Ambev.DeveloperEvaluation.Common.dll
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\bin\Debug\net8.0\Ambev.DeveloperEvaluation.Common.deps.json
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\bin\Debug\net8.0\Ambev.DeveloperEvaluation.Common.dll
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\bin\Debug\net8.0\Ambev.DeveloperEvaluation.Common.pdb
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.csproj.AssemblyReference.cache
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.AssemblyInfoInputs.cache
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.AssemblyInfo.cs
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.csproj.CoreCompileInputs.cache
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.sourcelink.json
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.dll
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\refint\Ambev.DeveloperEvaluation.Common.dll
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\Ambev.DeveloperEvaluation.Common.pdb
+C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.Common\obj\Debug\net8.0\ref\Ambev.DeveloperEvaluation.Common.dll
