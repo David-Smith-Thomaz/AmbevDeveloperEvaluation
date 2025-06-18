@@ -1,5 +1,25 @@
-﻿################################################################################
-# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
-################################################################################
+﻿# Ignore Visual Studio folder
+.vs/
 
-/.vs/Ambev.DeveloperEvaluation
+# Ignore build directories
+**/bin/
+**/obj/
+
+# Ignore temporary and user-specific files
+*.user
+*.suo
+*.log
+*.userprefs
+*.vspscc
+*.vssscc
+
+# Ignore build folders (general)
+Build/
+build/
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+
+# Ignore VS Code settings (if using)
+.vscode/
