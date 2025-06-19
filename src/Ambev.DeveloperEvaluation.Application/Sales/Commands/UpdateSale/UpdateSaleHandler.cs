@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Events;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.UpdateSale
 {
@@ -25,7 +26,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.UpdateSale
             }
             if (sale.Status == Domain.Enums.SaleStatus.Cancelled)
             {
-                throw new InvalidOperationException("Cannot update details of a cancelled sale.");
+                throw new DomainValidationException("Cannot update details of a cancelled sale.");
             }
 
             sale.UpdateSaleDetails(request.CustomerName, request.BranchName);

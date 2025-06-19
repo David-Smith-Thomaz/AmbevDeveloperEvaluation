@@ -49,7 +49,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         {
             if (IsCancelled)
             {
-                throw new InvalidOperationException("Cannot update a cancelled item.");
+                throw new DomainValidationException("Cannot update a cancelled item.");
             }
             SetQuantity(newQuantity);
             UnitPrice = newUnitPrice;

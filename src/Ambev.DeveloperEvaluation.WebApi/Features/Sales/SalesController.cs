@@ -17,12 +17,13 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.AddItemToSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSaleById;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSaleItemById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 {
     [ApiController]
     [Route("api/sales")]
-    // [Authorize]
+    [Authorize]
     public class SalesController : ControllerBase
     {
         private readonly IMediator _mediator;

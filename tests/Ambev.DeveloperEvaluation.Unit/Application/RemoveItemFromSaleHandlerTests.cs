@@ -8,6 +8,7 @@ using MediatR;
 using NSubstitute;
 using Xunit;
 using FluentAssertions;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 
 namespace Ambev.DeveloperEvaluation.Unit.Application.Sales
 {
@@ -146,7 +147,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Application.Sales
             var act = async () => await _handler.Handle(command, CancellationToken.None);
 
             // Then
-            await act.Should().ThrowAsync<InvalidOperationException>()
+            await act.Should().ThrowAsync<DomainValidationException>()
                 .WithMessage("Cannot remove items from a cancelled sale.");
 
             await _saleRepository.DidNotReceive().UpdateAsync(Arg.Any<Sale>());

@@ -3,6 +3,7 @@ using Ambev.DeveloperEvaluation.Domain.Enums;
 using Ambev.DeveloperEvaluation.Unit.Application.Sales.TestData;
 using Xunit;
 using FluentAssertions;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 
 namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
 {
@@ -78,7 +79,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             Action act = () => sale.AddItem(newItem);
 
             // Assert
-            act.Should().Throw<InvalidOperationException>()
+            act.Should().Throw<DomainValidationException>()
                .WithMessage("Cannot add items to a cancelled sale.");
             sale.SaleItems.Should().NotContain(newItem);
         }
@@ -202,7 +203,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             Action act = () => sale.UpdateSaleDetails(newCustomerName, newBranchName);
 
             // Assert
-            act.Should().Throw<InvalidOperationException>()
+            act.Should().Throw<DomainValidationException>()
                .WithMessage("Cannot update details of a cancelled sale.");
         }
     }

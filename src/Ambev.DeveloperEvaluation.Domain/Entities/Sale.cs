@@ -43,7 +43,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         {
             if (Status == SaleStatus.Cancelled)
             {
-                throw new InvalidOperationException("Cannot add items to a cancelled sale.");
+                throw new DomainValidationException("Cannot add items to a cancelled sale.");
             }
             if (item == null)
             {
@@ -87,7 +87,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         {
             if (Status == SaleStatus.Cancelled)
             {
-                throw new InvalidOperationException("Cannot update details of a cancelled sale.");
+                throw new DomainValidationException("Cannot update details of a cancelled sale.");
             }
             CustomerName = customerName;
             BranchName = branchName;

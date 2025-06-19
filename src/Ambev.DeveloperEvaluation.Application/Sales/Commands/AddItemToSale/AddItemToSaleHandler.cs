@@ -2,6 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Events;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.AddItemToSale
 {
@@ -26,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.AddItemToSale
             }
             if (sale.Status == Domain.Enums.SaleStatus.Cancelled)
             {
-                throw new InvalidOperationException("Cannot add items to a cancelled sale.");
+                throw new DomainValidationException("Cannot add items to a cancelled sale.");
             }
 
             var newItem = new SaleItem(

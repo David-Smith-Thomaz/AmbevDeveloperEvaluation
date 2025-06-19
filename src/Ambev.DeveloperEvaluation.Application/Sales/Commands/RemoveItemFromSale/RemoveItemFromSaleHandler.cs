@@ -2,6 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 using Ambev.DeveloperEvaluation.Domain.Events;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.RemoveItemFromSale
 {
@@ -26,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.RemoveItemFromSal
             }
             if (sale.Status == SaleStatus.Cancelled)
             {
-                throw new InvalidOperationException("Cannot remove items from a cancelled sale.");
+                throw new DomainValidationException("Cannot remove items from a cancelled sale.");
             }
 
             var itemRemoved = sale.RemoveItem(request.ItemId);

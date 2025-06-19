@@ -99,7 +99,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Application.Sales
             var act = async () => await _handler.Handle(command, CancellationToken.None);
 
             // Then
-            await act.Should().ThrowAsync<InvalidOperationException>()
+            await act.Should().ThrowAsync<DomainValidationException>()
                 .WithMessage("Cannot update details of a cancelled sale.");
 
             await _saleRepository.DidNotReceive().UpdateAsync(Arg.Any<Sale>());
