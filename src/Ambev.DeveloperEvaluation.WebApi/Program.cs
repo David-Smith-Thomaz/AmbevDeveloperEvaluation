@@ -11,6 +11,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace Ambev.DeveloperEvaluation.WebApi;
 
@@ -32,7 +33,9 @@ public class Program
 
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sales API", Version = "v1" });
+                var apiVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "v1.0.0";
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = $"Sales API - v{apiVersion}", Version = apiVersion });
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
