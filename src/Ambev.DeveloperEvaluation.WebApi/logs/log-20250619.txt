@@ -197,3 +197,17 @@ ORDER BY t."CreatedAt" DESC, t."Id"
 2025-06-19 14:56:50.773 -03:00 [INF] Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'Ambev.DeveloperEvaluation.WebApi.Features.Sales.SalesController.ListSales (Ambev.DeveloperEvaluation.WebApi)'
 2025-06-19 14:56:50.775 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request finished HTTP/2 GET https://localhost:7181/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 62.638ms
 2025-06-19 15:30:41.246 -03:00 [INF] Microsoft.Hosting.Lifetime Application is shutting down...
+2025-06-19 18:17:40.615 -03:00 [INF] Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService Health Check enabled at: '/health'
+2025-06-19 18:17:40.687 -03:00 [INF] Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\david\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-19 18:17:40.747 -03:00 [INF] Microsoft.Hosting.Lifetime Now listening on: https://localhost:7181
+2025-06-19 18:17:40.749 -03:00 [INF] Microsoft.Hosting.Lifetime Now listening on: http://localhost:5119
+2025-06-19 18:17:40.750 -03:00 [INF] Microsoft.Hosting.Lifetime Application started. Press Ctrl+C to shut down.
+2025-06-19 18:17:40.750 -03:00 [INF] Microsoft.Hosting.Lifetime Hosting environment: Development
+2025-06-19 18:17:40.751 -03:00 [INF] Microsoft.Hosting.Lifetime Content root path: C:\Projects\AmbevDeveloperEvaluation\src\Ambev.DeveloperEvaluation.WebApi
+2025-06-19 18:17:52.453 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request starting HTTP/2 GET https://localhost:7181/swagger/index.html - null null
+2025-06-19 18:17:52.514 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request finished HTTP/2 GET https://localhost:7181/swagger/index.html - 200 null text/html;charset=utf-8 62.3786ms
+2025-06-19 18:17:52.542 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request starting HTTP/2 GET https://localhost:7181/swagger/index.js - null null
+2025-06-19 18:17:52.547 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request finished HTTP/2 GET https://localhost:7181/swagger/index.js - 200 null application/javascript;charset=utf-8 4.7902ms
+2025-06-19 18:17:52.676 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request starting HTTP/2 GET https://localhost:7181/swagger/v1/swagger.json - null null
+2025-06-19 18:17:52.784 -03:00 [INF] Microsoft.AspNetCore.Hosting.Diagnostics Request finished HTTP/2 GET https://localhost:7181/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 107.9038ms
+2025-06-19 18:17:55.472 -03:00 [INF] Microsoft.Hosting.Lifetime Application is shutting down...
