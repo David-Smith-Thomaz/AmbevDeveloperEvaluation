@@ -1,0 +1,2 @@
+C:\Projects\AmbevDeveloperEvaluation\bin\Debug\Ambev.DeveloperEvaluation.WebApi.dll
+C:\Projects\AmbevDeveloperEvaluation\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache

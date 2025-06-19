@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UgLjw00qoyI=",
+  "dgSpecHash": "l1+Z5OtsuH8=",
   "success": true,
   "projectFilePath": "C:\\Projects\\AmbevDeveloperEvaluation\\tests\\Ambev.DeveloperEvaluation.Integration\\Ambev.DeveloperEvaluation.Integration.csproj",
   "expectedPackageFiles": [
@@ -64,6 +64,7 @@
     "C:\\Users\\david\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
+    "C:\\Users\\david\\.nuget\\packages\\system.linq.dynamic.core\\1.6.6\\system.linq.dynamic.core.1.6.6.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.reflection.typeextensions\\4.7.0\\system.reflection.typeextensions.4.7.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\xunit\\2.9.2\\xunit.2.9.2.nupkg.sha512",

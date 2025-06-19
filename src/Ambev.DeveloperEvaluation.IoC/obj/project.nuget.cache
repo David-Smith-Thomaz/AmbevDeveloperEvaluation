@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j0ijo9uC/CU=",
+  "dgSpecHash": "VuMAS5s0bUQ=",
   "success": true,
   "projectFilePath": "C:\\Projects\\AmbevDeveloperEvaluation\\src\\Ambev.DeveloperEvaluation.IoC\\Ambev.DeveloperEvaluation.IoC.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,7 @@
     "C:\\Users\\david\\.nuget\\packages\\serilog.sinks.debug\\2.0.0\\serilog.sinks.debug.2.0.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
+    "C:\\Users\\david\\.nuget\\packages\\system.linq.dynamic.core\\1.6.6\\system.linq.dynamic.core.1.6.6.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.reflection.typeextensions\\4.7.0\\system.reflection.typeextensions.4.7.0.nupkg.sha512"
   ],
   "logs": []
