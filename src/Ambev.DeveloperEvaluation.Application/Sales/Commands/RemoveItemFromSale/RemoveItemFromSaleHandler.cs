@@ -1,17 +1,19 @@
 ﻿using MediatR;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Events;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.RemoveItemFromSale
 {
     public class RemoveItemFromSaleHandler : IRequestHandler<RemoveItemFromSaleCommand, Unit>
     {
         private readonly ISaleRepository _saleRepository;
-        // private readonly IMediator _mediator; // Para publicar SaleModifiedEvent e ItemRemovedEvent
+        private readonly IMediator _mediator;
 
-        public RemoveItemFromSaleHandler(ISaleRepository saleRepository /*, IMediator mediator */)
+        public RemoveItemFromSaleHandler(ISaleRepository saleRepository, IMediator mediator)
         {
             _saleRepository = saleRepository;
-            // _mediator = mediator;
+            _mediator = mediator;
         }
 
         public async Task<Unit> Handle(RemoveItemFromSaleCommand request, CancellationToken cancellationToken)
@@ -22,27 +24,23 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.RemoveItemFromSal
             {
                 throw new InvalidOperationException($"Sale with ID {request.SaleId} not found.");
             }
-            if (sale.Status == Domain.Enums.SaleStatus.Cancelled)
+            if (sale.Status == SaleStatus.Cancelled)
             {
                 throw new InvalidOperationException("Cannot remove items from a cancelled sale.");
             }
 
-            // A lógica de remoção está na entidade de domínio
-            sale.RemoveItem(request.ItemId);
+            var itemRemoved = sale.RemoveItem(request.ItemId);
 
-            // Validação da Sale após remover o item
-            var saleValidationErrors = await sale.ValidateAsync();
-            if (saleValidationErrors.Any())
+            if (itemRemoved)
             {
-                throw new InvalidOperationException($"Erro de validação da venda ao remover item: {string.Join("; ", saleValidationErrors.Select(e => e.Error))}");
+                await _saleRepository.UpdateAsync(sale);
+                await _mediator.Publish(new SaleModifiedEvent(sale.Id), cancellationToken);
+                Console.WriteLine($"[Event] Item removed from Sale ID: {sale.Id}, Item ID: {request.ItemId}");
             }
-
-            await _saleRepository.UpdateAsync(sale);
-
-            // Publicar Eventos (Opcional)
-            // await _mediator.Publish(new SaleModifiedEvent(sale.Id), cancellationToken);
-            // await _mediator.Publish(new ItemRemovedFromSaleEvent(sale.Id, request.ItemId), cancellationToken); // Se criar este evento
-            Console.WriteLine($"[Event] Item removed from Sale ID: {sale.Id}, Item ID: {request.ItemId} - (Simulated Publishing)");
+            else
+            {
+                Console.WriteLine($"[Info] Item ID: {request.ItemId} not found in Sale ID: {sale.Id}. No changes applied.");
+            }
 
             return Unit.Value;
         }

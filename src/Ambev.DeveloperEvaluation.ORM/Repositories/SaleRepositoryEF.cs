@@ -5,37 +5,63 @@ using System.Linq.Dynamic.Core;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories
 {
+    /// <summary>
+    /// Implementation of ISaleRepository using Entity Framework Core for sales data operations.
+    /// </summary>
     public class SaleRepositoryEF : ISaleRepository
     {
         private readonly DefaultContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of SaleRepositoryEF.
+        /// </summary>
+        /// <param name="context">The database context.</param>
         public SaleRepositoryEF(DefaultContext context)
         {
             _context = context;
         }
 
-        public async Task AddAsync(Sale sale)
+        /// <summary>
+        /// Adds a new sale to the database.
+        /// </summary>
+        /// <param name="sale">The sale entity to add.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A task that represents the asynchronous add operation.</returns>
+        public async Task AddAsync(Sale sale, CancellationToken cancellationToken = default)
         {
-            await _context.Sales.AddAsync(sale);
-            await _context.SaveChangesAsync();
+            await _context.Sales.AddAsync(sale, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Sale?> GetByIdAsync(Guid id)
+        /// <summary>
+        /// Retrieves a sale by its unique identifier, including its associated items.
+        /// </summary>
+        /// <param name="id">The unique identifier of the sale.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>The sale if found, null otherwise.</returns>
+        public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Sales
                                  .Include(s => s.SaleItems)
                                  .AsNoTracking()
-                                 .FirstOrDefaultAsync(s => s.Id == id);
+                                 .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
         }
 
-        public async Task UpdateAsync(Sale sale)
+        /// <summary>
+        /// Updates an existing sale in the database, including its items and handling concurrency.
+        /// This method explicitly manages the state of the sale and its child items.
+        /// </summary>
+        /// <param name="sale">The sale entity with updated information.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A task that represents the asynchronous update operation.</returns>
+        public async Task UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
         {
             _context.Entry(sale).State = EntityState.Modified;
 
             var originalItemsInDb = await _context.SaleItems
                                                   .AsNoTracking()
                                                   .Where(si => si.SaleId == sale.Id)
-                                                  .ToListAsync();
+                                                  .ToListAsync(cancellationToken);
 
             foreach (var originalItem in originalItemsInDb)
             {
@@ -47,9 +73,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
 
             foreach (var incomingItem in sale.SaleItems)
             {
-                var trackedEntry = _context.Entry(incomingItem);
-
-                if (incomingItem.Id == Guid.Empty || trackedEntry.State == EntityState.Detached)
+                if (incomingItem.Id == Guid.Empty || _context.Entry(incomingItem).State == EntityState.Detached)
                 {
                     var existsInDb = originalItemsInDb.Any(oi => oi.Id == incomingItem.Id);
 
@@ -66,16 +90,31 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                         incomingItem.SetSaleId(sale.Id);
                     }
                 }
-                else if (trackedEntry.State == EntityState.Unchanged)
+                else if (_context.Entry(incomingItem).State == EntityState.Unchanged)
                 {
                     _context.Entry(incomingItem).State = EntityState.Modified;
                 }
             }
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<Sale>> ListAsync(int pageNumber, int pageSize, string? orderBy = null, string? filter = null)
+        /// <summary>
+        /// Retrieves a list of sales with optional pagination, ordering, and filtering.
+        /// </summary>
+        /// <param name="pageNumber">The page number (1-based).</param>
+        /// <param name="pageSize">The number of items per page.</param>
+        /// <param name="orderBy">Comma-separated list of properties to order by (e.g., "SaleDate desc, TotalAmount asc").</param>
+        /// <param name="filter">String representing filter criteria (e.g., "CustomerName=Test*&_minTotalAmount=50").</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A task that represents the asynchronous operation, returning an enumerable collection of sales.</returns>
+        public async Task<IEnumerable<Sale>> ListAsync(
+            int pageNumber,
+            int pageSize,
+            string? orderBy = null,
+            string? filter = null,
+            CancellationToken cancellationToken = default
+        )
         {
             IQueryable<Sale> query = _context.Sales.Include(s => s.SaleItems);
 
@@ -156,7 +195,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Erro ao aplicar filtro dinâmico: {ex.Message}");
+                        Console.WriteLine($"Erro ao aplicar filtro para contagem: {ex.Message}");
                     }
                 }
             }
@@ -181,10 +220,16 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             var skip = (pageNumber - 1) * pageSize;
             query = query.Skip(skip).Take(pageSize);
 
-            return await query.ToListAsync();
+            return await query.ToListAsync(cancellationToken);
         }
 
-        public async Task<int> CountAsync(string? filter = null)
+        /// <summary>
+        /// Counts the total number of sales based on optional filtering criteria.
+        /// </summary>
+        /// <param name="filter">String representing filter criteria.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A task that represents the asynchronous count operation, returning the total count.</returns>
+        public async Task<int> CountAsync(string? filter = null, CancellationToken cancellationToken = default)
         {
             IQueryable<Sale> query = _context.Sales;
 
@@ -237,6 +282,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                             var valueString = parts[1].Trim();
 
                             object convertedValue;
+
                             if (decimal.TryParse(valueString, out var decVal))
                             {
                                 convertedValue = decVal;
@@ -269,7 +315,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                 }
             }
 
-            return await query.CountAsync();
+            return await query.CountAsync(cancellationToken);
         }
     }
 }

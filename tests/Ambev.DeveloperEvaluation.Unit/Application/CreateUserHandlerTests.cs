@@ -80,7 +80,7 @@ public class CreateUserHandlerTests
     public async Task Handle_InvalidRequest_ThrowsValidationException()
     {
         // Given
-        var command = new CreateUserCommand(); // Empty command will fail validation
+        var command = new CreateUserCommand();
 
         // When
         var act = () => _handler.Handle(command, CancellationToken.None);

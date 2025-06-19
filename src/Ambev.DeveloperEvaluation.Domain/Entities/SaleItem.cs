@@ -1,6 +1,7 @@
 using System;
 using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Common;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
@@ -72,11 +73,25 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         {
             if (quantity <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity must be a positive number.");
+                throw new DomainValidationException(new List<ValidationErrorDetail>
+                {
+                    new ValidationErrorDetail
+                    {
+                        Detail = "Quantity must be a positive number.",
+                        Error = "InvalidQuantity"
+                    }
+                });
             }
             if (quantity > 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(quantity), "Cannot sell more than 20 identical items.");
+                throw new DomainValidationException(new List<ValidationErrorDetail>
+                {
+                    new ValidationErrorDetail
+                    {
+                        Detail = "Cannot sell more than 20 identical items.",
+                        Error = "QuantityExceedsLimit"
+                    }
+                });
             }
             Quantity = quantity;
             CalculateDiscount();

@@ -1,6 +1,7 @@
 using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Common;
 using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
@@ -54,19 +55,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
             UpdatedAt = DateTime.UtcNow;
         }
 
-        public void RemoveItem(Guid itemId)
+        public bool RemoveItem(Guid itemId)
         {
-            if (Status == SaleStatus.Cancelled)
-            {
-                throw new InvalidOperationException("Cannot remove items from a cancelled sale.");
-            }
             var itemToRemove = _saleItems.FirstOrDefault(i => i.Id == itemId);
             if (itemToRemove != null)
             {
                 _saleItems.Remove(itemToRemove);
                 RecalculateTotalAmount();
                 UpdatedAt = DateTime.UtcNow;
+                return true;
             }
+            return false;
         }
 
         public void CancelSale()
@@ -104,7 +103,15 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         {
             var validator = new SaleValidator();
             var result = await validator.ValidateAsync(this);
-            return result.Errors.Select(o => (ValidationErrorDetail)o);
+
+            if (!result.IsValid)
+            {
+                var validationErrorDetails = result.Errors.Select(failure => (ValidationErrorDetail)failure).ToList();
+
+                throw new DomainValidationException("One or more domain validation errors occurred.", validationErrorDetails);
+            }
+
+            return Enumerable.Empty<ValidationErrorDetail>();
         }
     }
 }

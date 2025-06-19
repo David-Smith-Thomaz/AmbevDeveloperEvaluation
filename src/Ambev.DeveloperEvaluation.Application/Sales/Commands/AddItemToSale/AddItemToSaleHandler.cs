@@ -1,18 +1,19 @@
 ﻿using MediatR;
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Domain.Events;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.AddItemToSale
 {
     public class AddItemToSaleHandler : IRequestHandler<AddItemToSaleCommand, Guid>
     {
         private readonly ISaleRepository _saleRepository;
-       
+        private readonly IMediator _mediator;
 
-        public AddItemToSaleHandler(ISaleRepository saleRepository /*, IMediator mediator */)
+        public AddItemToSaleHandler(ISaleRepository saleRepository, IMediator mediator)
         {
             _saleRepository = saleRepository;
-            // _mediator = mediator;
+            _mediator = mediator;
         }
 
         public async Task<Guid> Handle(AddItemToSaleCommand request, CancellationToken cancellationToken)
@@ -50,11 +51,9 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.AddItemToSale
             }
 
             await _saleRepository.UpdateAsync(sale);
+            await _mediator.Publish(new SaleModifiedEvent(sale.Id), cancellationToken);
 
-            // Publicar Eventos (Opcional)
-            // await _mediator.Publish(new SaleModifiedEvent(sale.Id), cancellationToken);
-            // await _mediator.Publish(new ItemAddedToSaleEvent(sale.Id, newItem.Id), cancellationToken); // Se criar este evento
-            Console.WriteLine($"[Event] Item added to Sale ID: {sale.Id}, Item ID: {newItem.Id} - (Simulated Publishing)");
+            Console.WriteLine($"[Event] Item added to Sale ID: {sale.Id}, Item ID: {newItem.Id} - (Simulated Publishing)"); // Pode remover esta linha.
 
             return newItem.Id;
         }
