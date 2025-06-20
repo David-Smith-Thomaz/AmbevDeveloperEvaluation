@@ -5,18 +5,18 @@ Este projeto foi desenvolvido como parte de uma avaliação técnica voltada a c
 
 Ao longo da solução, são abordados os seguintes pilares:
 
-✅ Proficiência com C# e .NET 8.0
-🧱 Separação de responsabilidades com Clean Architecture e DDD
-🗃️ Persistência com PostgreSQL e aberto para integrar com MongoDB
-🧩 Aplicação de padrões como CQRS e Mediator
-🔁 Mapeamento com Entity Framework Core e AutoMapper
-🧪 Testes automatizados com xUnit, NSubstitute e Bogus
-🔐 Segurança com autenticação JWT e proteção de endpoints
-⚙️ Construção de APIs RESTful com paginação, ordenação e filtros
-🧯 Tratamento padronizado de erros com middleware customizado
-🐳 Integração com Docker e Docker Compose
-🌀 Controle de versão com Git, uso de Git Flow e commits semânticos
-🚀 Foco em performance, clareza de código e implementação precisa das regras de negócio
+- ✅ Proficiência com **C# e .NET 8.0**
+- 🧱 Separação de responsabilidades com **Clean Architecture** e **DDD**
+- 🗃️ Persistência com **PostgreSQL** e aberto para integrar com **MongoDB**
+- 🧩 Aplicação de padrões como **CQRS** e **Mediator**
+- 🔁 Mapeamento com **Entity Framework Core** e **AutoMapper**
+- 🧪 Testes automatizados com **xUnit**, **NSubstitute** e **Bogus**
+- 🔐 Segurança com **autenticação JWT** e proteção de endpoints
+- ⚙️ Construção de APIs RESTful com **paginação, ordenação e filtros**
+- 🧯 Tratamento padronizado de erros com **middleware customizado**
+- 🐳 Integração com **Docker** e **Docker Compose**
+- 🌀 Controle de versão com **Git**, uso de **Git Flow** e **commits semânticos**
+- 🚀 Foco em **performance**, clareza de código e implementação precisa das regras de negócio
 
 Esta avaliação não apenas testa a proficiência técnica, mas também a capacidade de aplicar boas práticas em um cenário realista, como se estivesse inserido diretamente em um projeto de produção. É um exercício completo de engenharia de software moderna, alinhado às expectativas de um profissional sênior.
 
